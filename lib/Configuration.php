@@ -107,7 +107,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = 'GrabFood-API-SDK/1.0.1/php';
+    protected $userAgent = 'GrabFood-API-SDK/1.0.2/php';
 
     /**
      * Debug switch (default set to false)
@@ -440,7 +440,7 @@ class Configuration
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    The version of the OpenAPI document: 1.1.3' . PHP_EOL;
-        $report .= '    SDK Package Version: 1.0.1' . PHP_EOL;
+        $report .= '    SDK Package Version: 1.0.2' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
 
         return $report;

@@ -132,17 +132,18 @@ class ListOrdersApi
      *
      * @param  string $authorization Specify the generated authorization token of the bearer type. (required)
      * @param  string $merchant_id The merchant&#39;s ID that is in GrabFood&#39;s database. (required)
-     * @param  string $date date (required)
-     * @param  int $page Specify the page number for the report. (required)
+     * @param  string $date date (optional)
+     * @param  int $page Specify the page number for the report. Required if orderIDs is not provided. (optional)
+     * @param  string[] $order_ids List of order IDs. If provided, date and page are not required. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listOrders'] to see the possible values for this operation
      *
      * @throws \Grab\GrabfoodApiSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return \Grab\GrabfoodApiSdk\Model\ListOrdersResponse
      */
-    public function listOrders($authorization, $merchant_id, $date, $page, string $contentType = self::contentTypes['listOrders'][0])
+    public function listOrders($authorization, $merchant_id, $date = null, $page = null, $order_ids = null, string $contentType = self::contentTypes['listOrders'][0])
     {
-        list($response) = $this->listOrdersWithHttpInfo($authorization, $merchant_id, $date, $page, $contentType);
+        list($response) = $this->listOrdersWithHttpInfo($authorization, $merchant_id, $date, $page, $order_ids, $contentType);
         return $response;
     }
 
@@ -153,17 +154,18 @@ class ListOrdersApi
      *
      * @param  string $authorization Specify the generated authorization token of the bearer type. (required)
      * @param  string $merchant_id The merchant&#39;s ID that is in GrabFood&#39;s database. (required)
-     * @param  string $date (required)
-     * @param  int $page Specify the page number for the report. (required)
+     * @param  string $date (optional)
+     * @param  int $page Specify the page number for the report. Required if orderIDs is not provided. (optional)
+     * @param  string[] $order_ids List of order IDs. If provided, date and page are not required. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listOrders'] to see the possible values for this operation
      *
      * @throws \Grab\GrabfoodApiSdk\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of \Grab\GrabfoodApiSdk\Model\ListOrdersResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function listOrdersWithHttpInfo($authorization, $merchant_id, $date, $page, string $contentType = self::contentTypes['listOrders'][0])
+    public function listOrdersWithHttpInfo($authorization, $merchant_id, $date = null, $page = null, $order_ids = null, string $contentType = self::contentTypes['listOrders'][0])
     {
-        $request = $this->listOrdersRequest($authorization, $merchant_id, $date, $page, $contentType);
+        $request = $this->listOrdersRequest($authorization, $merchant_id, $date, $page, $order_ids, $contentType);
 
         try {
             $options = $this->createHttpClientOption();
@@ -280,16 +282,17 @@ class ListOrdersApi
      *
      * @param  string $authorization Specify the generated authorization token of the bearer type. (required)
      * @param  string $merchant_id The merchant&#39;s ID that is in GrabFood&#39;s database. (required)
-     * @param  string $date (required)
-     * @param  int $page Specify the page number for the report. (required)
+     * @param  string $date (optional)
+     * @param  int $page Specify the page number for the report. Required if orderIDs is not provided. (optional)
+     * @param  string[] $order_ids List of order IDs. If provided, date and page are not required. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listOrders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listOrdersAsync($authorization, $merchant_id, $date, $page, string $contentType = self::contentTypes['listOrders'][0])
+    public function listOrdersAsync($authorization, $merchant_id, $date = null, $page = null, $order_ids = null, string $contentType = self::contentTypes['listOrders'][0])
     {
-        return $this->listOrdersAsyncWithHttpInfo($authorization, $merchant_id, $date, $page, $contentType)
+        return $this->listOrdersAsyncWithHttpInfo($authorization, $merchant_id, $date, $page, $order_ids, $contentType)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -304,17 +307,18 @@ class ListOrdersApi
      *
      * @param  string $authorization Specify the generated authorization token of the bearer type. (required)
      * @param  string $merchant_id The merchant&#39;s ID that is in GrabFood&#39;s database. (required)
-     * @param  string $date (required)
-     * @param  int $page Specify the page number for the report. (required)
+     * @param  string $date (optional)
+     * @param  int $page Specify the page number for the report. Required if orderIDs is not provided. (optional)
+     * @param  string[] $order_ids List of order IDs. If provided, date and page are not required. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listOrders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function listOrdersAsyncWithHttpInfo($authorization, $merchant_id, $date, $page, string $contentType = self::contentTypes['listOrders'][0])
+    public function listOrdersAsyncWithHttpInfo($authorization, $merchant_id, $date = null, $page = null, $order_ids = null, string $contentType = self::contentTypes['listOrders'][0])
     {
         $returnType = '\Grab\GrabfoodApiSdk\Model\ListOrdersResponse';
-        $request = $this->listOrdersRequest($authorization, $merchant_id, $date, $page, $contentType);
+        $request = $this->listOrdersRequest($authorization, $merchant_id, $date, $page, $order_ids, $contentType);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -357,14 +361,15 @@ class ListOrdersApi
      *
      * @param  string $authorization Specify the generated authorization token of the bearer type. (required)
      * @param  string $merchant_id The merchant&#39;s ID that is in GrabFood&#39;s database. (required)
-     * @param  string $date (required)
-     * @param  int $page Specify the page number for the report. (required)
+     * @param  string $date (optional)
+     * @param  int $page Specify the page number for the report. Required if orderIDs is not provided. (optional)
+     * @param  string[] $order_ids List of order IDs. If provided, date and page are not required. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['listOrders'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    public function listOrdersRequest($authorization, $merchant_id, $date, $page, string $contentType = self::contentTypes['listOrders'][0])
+    public function listOrdersRequest($authorization, $merchant_id, $date = null, $page = null, $order_ids = null, string $contentType = self::contentTypes['listOrders'][0])
     {
 
         // verify the required parameter 'authorization' is set
@@ -381,20 +386,12 @@ class ListOrdersApi
             );
         }
 
-        // verify the required parameter 'date' is set
-        if ($date === null || (is_array($date) && count($date) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $date when calling listOrders'
-            );
-        }
 
-        // verify the required parameter 'page' is set
-        if ($page === null || (is_array($page) && count($page) === 0)) {
-            throw new \InvalidArgumentException(
-                'Missing the required parameter $page when calling listOrders'
-            );
-        }
 
+        if ($order_ids !== null && count($order_ids) > 10) {
+            throw new \InvalidArgumentException('invalid value for "$order_ids" when calling ListOrdersApi.listOrders, number of items must be less than or equal to 10.');
+        }
+        
 
         $resourcePath = '/partner/v1/orders';
         $formParams = [];
@@ -419,7 +416,7 @@ class ListOrdersApi
             'string', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
         ) ?? []);
         // query params
         $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
@@ -428,7 +425,16 @@ class ListOrdersApi
             'integer', // openApiType
             'form', // style
             true, // explode
-            true // required
+            false // required
+        ) ?? []);
+        // query params
+        $queryParams = array_merge($queryParams, ObjectSerializer::toQueryValue(
+            $order_ids,
+            'orderIDs', // param base name
+            'array', // openApiType
+            'form', // style
+            true, // explode
+            false // required
         ) ?? []);
 
         // header params
