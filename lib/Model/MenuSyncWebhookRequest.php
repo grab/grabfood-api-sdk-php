@@ -550,7 +550,7 @@ class MenuSyncWebhookRequest implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets errors
      *
-     * @param string[]|null $errors A string array of errors that occurred during processing. This array is empty if the status is not `FAILED`.
+     * @param string[]|null $errors A string array of errors that occurred during processing.
      *
      * @return self
      */

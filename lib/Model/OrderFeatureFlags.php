@@ -251,6 +251,9 @@ class OrderFeatureFlags implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const ORDER_TYPE_DELIVERED_BY_GRAB = 'DeliveredByGrab';
     public const ORDER_TYPE_DELIVERED_BY_RESTAURANT = 'DeliveredByRestaurant';
     public const ORDER_TYPE_DINE_IN = 'DineIn';
+    public const ORDER_TYPE_SCAN_TO_ORDER = 'ScanToOrder';
+    public const ORDER_TYPE_TAKE_AWAY_ORDER = 'TakeAwayOrder';
+    public const ORDER_TYPE_POS_DINE_OUT_ORDER = 'PosDineOutOrder';
     public const ORDER_TYPE_UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api';
 
     /**
@@ -279,6 +282,9 @@ class OrderFeatureFlags implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::ORDER_TYPE_DELIVERED_BY_GRAB,
             self::ORDER_TYPE_DELIVERED_BY_RESTAURANT,
             self::ORDER_TYPE_DINE_IN,
+            self::ORDER_TYPE_SCAN_TO_ORDER,
+            self::ORDER_TYPE_TAKE_AWAY_ORDER,
+            self::ORDER_TYPE_POS_DINE_OUT_ORDER,
             self::ORDER_TYPE_UNKNOWN_DEFAULT_OPEN_API,
         ];
     }
@@ -456,7 +462,7 @@ class OrderFeatureFlags implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets is_mex_edit_order
      *
-     * @param bool|null $is_mex_edit_order A boolean value that indicates if the order is edited.
+     * @param bool|null $is_mex_edit_order A boolean value that indicates if the order is edited or recalculated. It does not necessarily mean the order was edited by the merchant. The changes could have been made by Grab, the Merchant, or the Customer.
      *
      * @return self
      */

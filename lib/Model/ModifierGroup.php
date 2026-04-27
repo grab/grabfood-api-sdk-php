@@ -493,7 +493,7 @@ class ModifierGroup implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets available_status
      *
-     * @param string $available_status The status for the modifier group.   > The item may be marked as `\"UNAVAILABLE\"` if no available modifier to be selected within the required modifier group where `\"selectionRangeMin\": 1`.
+     * @param string $available_status The status for the modifier group.   Note: `HIDE` will only update the modifier group to unavailable, remove the modifier group from the menu if you want to hide it entirely. > The item may be marked as `\"UNAVAILABLE\"` if no available modifier to be selected within the required modifier group where `\"selectionRangeMin\": 1`.
      *
      * @return self
      */

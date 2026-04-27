@@ -348,7 +348,7 @@ class AdvancedPricing implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery_on_demand_grab_app
      *
-     * @param int|null $delivery_on_demand_grab_app Service type: `Delivery`, Order type: `Instant`, Channel: `Grab App`
+     * @param int|null $delivery_on_demand_grab_app **Case-sensitive**. Service type: `Delivery`, Order type: `Instant`, Channel: `Grab App`
      *
      * @return self
      */
@@ -375,7 +375,7 @@ class AdvancedPricing implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery_scheduled_grab_app
      *
-     * @param int|null $delivery_scheduled_grab_app Service type: `Delivery`, Order type: `Scheduled`, Channel: `Grab App`
+     * @param int|null $delivery_scheduled_grab_app **Case-sensitive**. Service type: `Delivery`, Order type: `Scheduled`, Channel: `Grab App`
      *
      * @return self
      */
@@ -402,7 +402,7 @@ class AdvancedPricing implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets self_pick_up_on_demand_grab_app
      *
-     * @param int|null $self_pick_up_on_demand_grab_app Service type: `Self Pick Up`, Order type: `Instant`, Channel: `Grab App`
+     * @param int|null $self_pick_up_on_demand_grab_app **Case-sensitive**. Service type: `Self Pick Up`, Order type: `Instant`, Channel: `Grab App`
      *
      * @return self
      */
@@ -429,7 +429,7 @@ class AdvancedPricing implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets dine_in_on_demand_grab_app
      *
-     * @param int|null $dine_in_on_demand_grab_app Service type: `Dine In`, Order type: `Instant`, Channel: `Grab App`
+     * @param int|null $dine_in_on_demand_grab_app **Case-sensitive**. Service type: `Dine In`, Order type: `Instant`, Channel: `Grab App`
      *
      * @return self
      */
@@ -456,7 +456,7 @@ class AdvancedPricing implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery_on_demand_store_front
      *
-     * @param int|null $delivery_on_demand_store_front Service type: `Delivery`, Order type: `Instant`, Channel: `Store Front`
+     * @param int|null $delivery_on_demand_store_front **Case-sensitive**. Service type: `Delivery`, Order type: `Instant`, Channel: `Store Front`
      *
      * @return self
      */
@@ -483,7 +483,7 @@ class AdvancedPricing implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery_scheduled_store_front
      *
-     * @param int|null $delivery_scheduled_store_front Service type: `Delivery`, Order type: `Scheduled`, Channel: `Store Front`
+     * @param int|null $delivery_scheduled_store_front **Case-sensitive**. Service type: `Delivery`, Order type: `Scheduled`, Channel: `Store Front`
      *
      * @return self
      */
@@ -510,7 +510,7 @@ class AdvancedPricing implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets self_pick_up_on_demand_store_front
      *
-     * @param int|null $self_pick_up_on_demand_store_front Service type: `Self Pick Up`, Order type: `Instant`, Channel: `Store Front`
+     * @param int|null $self_pick_up_on_demand_store_front **Case-sensitive**. Service type: `Self Pick Up`, Order type: `Instant`, Channel: `Store Front`
      *
      * @return self
      */

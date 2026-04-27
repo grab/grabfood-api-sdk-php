@@ -38,7 +38,7 @@ use \Grab\GrabfoodApiSdk\ObjectSerializer;
  * Receiver Class Doc Comment
  *
  * @category Class
- * @description A JSON object containing the receiver information. Only applicable for orders that are delivered by the restaurant. &#x60;null&#x60; if not applicable.
+ * @description A JSON object containing the receiver information.
  * @package  Grab\GrabfoodApiSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -63,7 +63,8 @@ class Receiver implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'name' => 'string',
         'phones' => 'string',
-        'address' => '\Grab\GrabfoodApiSdk\Model\Address'
+        'address' => '\Grab\GrabfoodApiSdk\Model\Address',
+        'virtual_contact' => '\Grab\GrabfoodApiSdk\Model\VirtualContact'
     ];
 
     /**
@@ -76,7 +77,8 @@ class Receiver implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'name' => null,
         'phones' => null,
-        'address' => null
+        'address' => null,
+        'virtual_contact' => null
     ];
 
     /**
@@ -87,7 +89,8 @@ class Receiver implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'name' => false,
         'phones' => false,
-        'address' => false
+        'address' => false,
+        'virtual_contact' => false
     ];
 
     /**
@@ -178,7 +181,8 @@ class Receiver implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'name' => 'name',
         'phones' => 'phones',
-        'address' => 'address'
+        'address' => 'address',
+        'virtual_contact' => 'virtualContact'
     ];
 
     /**
@@ -189,7 +193,8 @@ class Receiver implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'name' => 'setName',
         'phones' => 'setPhones',
-        'address' => 'setAddress'
+        'address' => 'setAddress',
+        'virtual_contact' => 'setVirtualContact'
     ];
 
     /**
@@ -200,7 +205,8 @@ class Receiver implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'name' => 'getName',
         'phones' => 'getPhones',
-        'address' => 'getAddress'
+        'address' => 'getAddress',
+        'virtual_contact' => 'getVirtualContact'
     ];
 
     /**
@@ -263,6 +269,7 @@ class Receiver implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('name', $data ?? [], null);
         $this->setIfExists('phones', $data ?? [], null);
         $this->setIfExists('address', $data ?? [], null);
+        $this->setIfExists('virtual_contact', $data ?? [], null);
     }
 
     /**
@@ -355,7 +362,7 @@ class Receiver implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets phones
      *
-     * @param string|null $phones The receiver's phone number.
+     * @param string|null $phones The receiver's phone number. Only applicable for orders that are delivered by the restaurant. `null` if not applicable.  > Note: The `phones` field will be deprecated once the virtualContact feature is fully rolled out.
      *
      * @return self
      */
@@ -392,6 +399,33 @@ class Receiver implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable address cannot be null');
         }
         $this->container['address'] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Gets virtual_contact
+     *
+     * @return \Grab\GrabfoodApiSdk\Model\VirtualContact|null
+     */
+    public function getVirtualContact()
+    {
+        return $this->container['virtual_contact'];
+    }
+
+    /**
+     * Sets virtual_contact
+     *
+     * @param \Grab\GrabfoodApiSdk\Model\VirtualContact|null $virtual_contact virtual_contact
+     *
+     * @return self
+     */
+    public function setVirtualContact($virtual_contact)
+    {
+        if (is_null($virtual_contact)) {
+            throw new \InvalidArgumentException('non-nullable virtual_contact cannot be null');
+        }
+        $this->container['virtual_contact'] = $virtual_contact;
 
         return $this;
     }

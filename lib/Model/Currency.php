@@ -261,6 +261,14 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
     public const SYMBOL_3 = '₫';
     public const SYMBOL_4 = '៛';
     public const SYMBOL_K = 'K';
+    public const SYMBOL_IDR = 'IDR';
+    public const SYMBOL_MYR = 'MYR';
+    public const SYMBOL_PHP = 'PHP';
+    public const SYMBOL_SGD = 'SGD';
+    public const SYMBOL_THB = 'THB';
+    public const SYMBOL_VND = 'VND';
+    public const SYMBOL_KHR = 'KHR';
+    public const SYMBOL_MMK = 'MMK';
     public const SYMBOL_UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api';
 
     /**
@@ -299,6 +307,14 @@ class Currency implements ModelInterface, ArrayAccess, \JsonSerializable
             self::SYMBOL_3,
             self::SYMBOL_4,
             self::SYMBOL_K,
+            self::SYMBOL_IDR,
+            self::SYMBOL_MYR,
+            self::SYMBOL_PHP,
+            self::SYMBOL_SGD,
+            self::SYMBOL_THB,
+            self::SYMBOL_VND,
+            self::SYMBOL_KHR,
+            self::SYMBOL_MMK,
             self::SYMBOL_UNKNOWN_DEFAULT_OPEN_API,
         ];
     }

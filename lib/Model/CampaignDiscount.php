@@ -252,6 +252,7 @@ class CampaignDiscount implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const TYPE_NET = 'net';
     public const TYPE_PERCENTAGE = 'percentage';
+    public const TYPE_FIX_PRICE = 'fixPrice';
     public const TYPE_DELIVERY = 'delivery';
     public const TYPE_FREE_ITEM = 'freeItem';
     public const TYPE_BUNDLE_SAME_NET = 'bundleSameNet';
@@ -272,6 +273,7 @@ class CampaignDiscount implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::TYPE_NET,
             self::TYPE_PERCENTAGE,
+            self::TYPE_FIX_PRICE,
             self::TYPE_DELIVERY,
             self::TYPE_FREE_ITEM,
             self::TYPE_BUNDLE_SAME_NET,
@@ -412,7 +414,7 @@ class CampaignDiscount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets cap
      *
-     * @param float|null $cap The maximum discount dollar amount. It is **not required** and will be ignored when the `discount.type` is: - `net` - `delivery` - `freeItem` - `bundleSameNet` - `bundleSamePercentage` - `bundleSameFixPrice` - `bundleDiffNet` - `bundleDiffPercentage` - `bundleDiffFixPrice`
+     * @param float|null $cap The maximum discount dollar amount. It is **not required** and will be ignored when the `discount.type` is: - `net` - `fixPrice` - `delivery` - `freeItem` - `bundleSameNet` - `bundleSamePercentage` - `bundleSameFixPrice` - `bundleDiffNet` - `bundleDiffPercentage` - `bundleDiffFixPrice`
      *
      * @return self
      */
@@ -439,7 +441,7 @@ class CampaignDiscount implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets value
      *
-     * @param float|null $value Specify the discount amount. Decimal number is not supported For VN, ID and TH. For example, `10.5` is not allowed and it should be `10.0`. * Dollar amount value when `discount.type` is `net`, `delivery`, `bundleSameNet`, `bundleSameFixPrice`, `bundleDiffNet`, `bundleDiffFixPrice`. * Percentage value (0-100) when `discount.type` is `percentage`, `bundleSamePercentage`, `bundleDiffPercentage`. * **Not required** when `discount.type` is `freeItem`.
+     * @param float|null $value Specify the discount amount. Decimal number is not supported For VN, ID and TH. For example, `10.5` is not allowed and it should be `10.0`. * Dollar amount value when `discount.type` is `net`, `delivery`, `fixPrice`, `bundleSameNet`, `bundleSameFixPrice`, `bundleDiffNet`, `bundleDiffFixPrice`. * Percentage value (0-100) when `discount.type` is `percentage`, `bundleSamePercentage`, `bundleDiffPercentage`. * **Not required** when `discount.type` is `freeItem`. * The order-level discount given **should not exceed 0.5 * the minimum basket amount**.
      *
      * @return self
      */

@@ -64,12 +64,15 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'subtotal' => 'int',
         'tax' => 'int',
         'merchant_charge_fee' => 'int',
+        'service_charge_fee' => 'int',
         'grab_fund_promo' => 'int',
         'merchant_fund_promo' => 'int',
         'basket_promo' => 'int',
         'delivery_fee' => 'int',
         'small_order_fee' => 'int',
-        'eater_payment' => 'int'
+        'eater_payment' => 'int',
+        'total' => 'int',
+        'merchant_earning' => '\Grab\GrabfoodApiSdk\Model\MerchantEarning'
     ];
 
     /**
@@ -83,12 +86,15 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'subtotal' => 'int64',
         'tax' => 'int64',
         'merchant_charge_fee' => 'int64',
+        'service_charge_fee' => 'int64',
         'grab_fund_promo' => 'int64',
         'merchant_fund_promo' => 'int64',
         'basket_promo' => 'int64',
         'delivery_fee' => 'int64',
         'small_order_fee' => 'int64',
-        'eater_payment' => 'int64'
+        'eater_payment' => 'int64',
+        'total' => 'int64',
+        'merchant_earning' => null
     ];
 
     /**
@@ -100,12 +106,15 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'subtotal' => false,
         'tax' => false,
         'merchant_charge_fee' => false,
+        'service_charge_fee' => false,
         'grab_fund_promo' => false,
         'merchant_fund_promo' => false,
         'basket_promo' => false,
         'delivery_fee' => false,
         'small_order_fee' => false,
-        'eater_payment' => false
+        'eater_payment' => false,
+        'total' => false,
+        'merchant_earning' => true
     ];
 
     /**
@@ -197,12 +206,15 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'subtotal' => 'subtotal',
         'tax' => 'tax',
         'merchant_charge_fee' => 'merchantChargeFee',
+        'service_charge_fee' => 'serviceChargeFee',
         'grab_fund_promo' => 'grabFundPromo',
         'merchant_fund_promo' => 'merchantFundPromo',
         'basket_promo' => 'basketPromo',
         'delivery_fee' => 'deliveryFee',
         'small_order_fee' => 'smallOrderFee',
-        'eater_payment' => 'eaterPayment'
+        'eater_payment' => 'eaterPayment',
+        'total' => 'total',
+        'merchant_earning' => 'merchantEarning'
     ];
 
     /**
@@ -214,12 +226,15 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'subtotal' => 'setSubtotal',
         'tax' => 'setTax',
         'merchant_charge_fee' => 'setMerchantChargeFee',
+        'service_charge_fee' => 'setServiceChargeFee',
         'grab_fund_promo' => 'setGrabFundPromo',
         'merchant_fund_promo' => 'setMerchantFundPromo',
         'basket_promo' => 'setBasketPromo',
         'delivery_fee' => 'setDeliveryFee',
         'small_order_fee' => 'setSmallOrderFee',
-        'eater_payment' => 'setEaterPayment'
+        'eater_payment' => 'setEaterPayment',
+        'total' => 'setTotal',
+        'merchant_earning' => 'setMerchantEarning'
     ];
 
     /**
@@ -231,12 +246,15 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'subtotal' => 'getSubtotal',
         'tax' => 'getTax',
         'merchant_charge_fee' => 'getMerchantChargeFee',
+        'service_charge_fee' => 'getServiceChargeFee',
         'grab_fund_promo' => 'getGrabFundPromo',
         'merchant_fund_promo' => 'getMerchantFundPromo',
         'basket_promo' => 'getBasketPromo',
         'delivery_fee' => 'getDeliveryFee',
         'small_order_fee' => 'getSmallOrderFee',
-        'eater_payment' => 'getEaterPayment'
+        'eater_payment' => 'getEaterPayment',
+        'total' => 'getTotal',
+        'merchant_earning' => 'getMerchantEarning'
     ];
 
     /**
@@ -299,12 +317,15 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('subtotal', $data ?? [], null);
         $this->setIfExists('tax', $data ?? [], null);
         $this->setIfExists('merchant_charge_fee', $data ?? [], null);
+        $this->setIfExists('service_charge_fee', $data ?? [], null);
         $this->setIfExists('grab_fund_promo', $data ?? [], null);
         $this->setIfExists('merchant_fund_promo', $data ?? [], null);
         $this->setIfExists('basket_promo', $data ?? [], null);
         $this->setIfExists('delivery_fee', $data ?? [], null);
         $this->setIfExists('small_order_fee', $data ?? [], null);
         $this->setIfExists('eater_payment', $data ?? [], null);
+        $this->setIfExists('total', $data ?? [], null);
+        $this->setIfExists('merchant_earning', $data ?? [], null);
     }
 
     /**
@@ -419,7 +440,7 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets merchant_charge_fee
      *
-     * @param int|null $merchant_charge_fee Any additional fee charged by merchant (tax-inclusive), which is 100% paid out to the merchant. Eg. Takeaway, packaging costs, dine-in charge.
+     * @param int|null $merchant_charge_fee Any additional fee charged by merchant (tax-inclusive), which is 100% paid out to the merchant. Reach out to your integration support team for the configuration. Eg. Takeaway, packaging costs, dine-in charge.
      *
      * @return self
      */
@@ -429,6 +450,33 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable merchant_charge_fee cannot be null');
         }
         $this->container['merchant_charge_fee'] = $merchant_charge_fee;
+
+        return $this;
+    }
+
+    /**
+     * Gets service_charge_fee
+     *
+     * @return int|null
+     */
+    public function getServiceChargeFee()
+    {
+        return $this->container['service_charge_fee'];
+    }
+
+    /**
+     * Sets service_charge_fee
+     *
+     * @param int|null $service_charge_fee Additional service charge fee charged by merchant (tax-inclusive), which is 100% paid out to the merchant. Reach out to your integration support team for the configuration.
+     *
+     * @return self
+     */
+    public function setServiceChargeFee($service_charge_fee)
+    {
+        if (is_null($service_charge_fee)) {
+            throw new \InvalidArgumentException('non-nullable service_charge_fee cannot be null');
+        }
+        $this->container['service_charge_fee'] = $service_charge_fee;
 
         return $this;
     }
@@ -591,6 +639,67 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable eater_payment cannot be null');
         }
         $this->container['eater_payment'] = $eater_payment;
+
+        return $this;
+    }
+
+    /**
+     * Gets total
+     *
+     * @return int|null
+     */
+    public function getTotal()
+    {
+        return $this->container['total'];
+    }
+
+    /**
+     * Sets total
+     *
+     * @param int|null $total The total merchant-related amount calculated exclusive of commission charges. Formulae is the same for all delivery method.  ``` total = subtotal + merchantChargeFee - merchantFundPromo | 2550+0-475=2075
+     *
+     * @return self
+     */
+    public function setTotal($total)
+    {
+        if (is_null($total)) {
+            throw new \InvalidArgumentException('non-nullable total cannot be null');
+        }
+        $this->container['total'] = $total;
+
+        return $this;
+    }
+
+    /**
+     * Gets merchant_earning
+     *
+     * @return \Grab\GrabfoodApiSdk\Model\MerchantEarning|null
+     */
+    public function getMerchantEarning()
+    {
+        return $this->container['merchant_earning'];
+    }
+
+    /**
+     * Sets merchant_earning
+     *
+     * @param \Grab\GrabfoodApiSdk\Model\MerchantEarning|null $merchant_earning merchant_earning
+     *
+     * @return self
+     */
+    public function setMerchantEarning($merchant_earning)
+    {
+        if (is_null($merchant_earning)) {
+            array_push($this->openAPINullablesSetToNull, 'merchant_earning');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('merchant_earning', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['merchant_earning'] = $merchant_earning;
 
         return $this;
     }

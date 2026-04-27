@@ -63,7 +63,9 @@ class EditOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'order_id' => 'string',
         'items' => '\Grab\GrabfoodApiSdk\Model\EditOrderItem[]',
-        'only_recalculate' => 'bool'
+        'only_recalculate' => 'bool',
+        'deposit_amount_in_min' => 'int',
+        'offline_pos_discount_in_min' => 'int'
     ];
 
     /**
@@ -76,7 +78,9 @@ class EditOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'order_id' => null,
         'items' => null,
-        'only_recalculate' => null
+        'only_recalculate' => null,
+        'deposit_amount_in_min' => 'int64',
+        'offline_pos_discount_in_min' => 'int64'
     ];
 
     /**
@@ -87,7 +91,9 @@ class EditOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'order_id' => false,
         'items' => false,
-        'only_recalculate' => false
+        'only_recalculate' => false,
+        'deposit_amount_in_min' => false,
+        'offline_pos_discount_in_min' => false
     ];
 
     /**
@@ -178,7 +184,9 @@ class EditOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'order_id' => 'orderID',
         'items' => 'items',
-        'only_recalculate' => 'onlyRecalculate'
+        'only_recalculate' => 'onlyRecalculate',
+        'deposit_amount_in_min' => 'depositAmountInMin',
+        'offline_pos_discount_in_min' => 'offlinePOSDiscountInMin'
     ];
 
     /**
@@ -189,7 +197,9 @@ class EditOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'order_id' => 'setOrderId',
         'items' => 'setItems',
-        'only_recalculate' => 'setOnlyRecalculate'
+        'only_recalculate' => 'setOnlyRecalculate',
+        'deposit_amount_in_min' => 'setDepositAmountInMin',
+        'offline_pos_discount_in_min' => 'setOfflinePosDiscountInMin'
     ];
 
     /**
@@ -200,7 +210,9 @@ class EditOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'order_id' => 'getOrderId',
         'items' => 'getItems',
-        'only_recalculate' => 'getOnlyRecalculate'
+        'only_recalculate' => 'getOnlyRecalculate',
+        'deposit_amount_in_min' => 'getDepositAmountInMin',
+        'offline_pos_discount_in_min' => 'getOfflinePosDiscountInMin'
     ];
 
     /**
@@ -263,6 +275,8 @@ class EditOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('order_id', $data ?? [], null);
         $this->setIfExists('items', $data ?? [], null);
         $this->setIfExists('only_recalculate', $data ?? [], null);
+        $this->setIfExists('deposit_amount_in_min', $data ?? [], null);
+        $this->setIfExists('offline_pos_discount_in_min', $data ?? [], null);
     }
 
     /**
@@ -390,6 +404,60 @@ class EditOrderRequest implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable only_recalculate cannot be null');
         }
         $this->container['only_recalculate'] = $only_recalculate;
+
+        return $this;
+    }
+
+    /**
+     * Gets deposit_amount_in_min
+     *
+     * @return int|null
+     */
+    public function getDepositAmountInMin()
+    {
+        return $this->container['deposit_amount_in_min'];
+    }
+
+    /**
+     * Sets deposit_amount_in_min
+     *
+     * @param int|null $deposit_amount_in_min The deposit amount in minor unit in POS system. This is only applicable for STO order
+     *
+     * @return self
+     */
+    public function setDepositAmountInMin($deposit_amount_in_min)
+    {
+        if (is_null($deposit_amount_in_min)) {
+            throw new \InvalidArgumentException('non-nullable deposit_amount_in_min cannot be null');
+        }
+        $this->container['deposit_amount_in_min'] = $deposit_amount_in_min;
+
+        return $this;
+    }
+
+    /**
+     * Gets offline_pos_discount_in_min
+     *
+     * @return int|null
+     */
+    public function getOfflinePosDiscountInMin()
+    {
+        return $this->container['offline_pos_discount_in_min'];
+    }
+
+    /**
+     * Sets offline_pos_discount_in_min
+     *
+     * @param int|null $offline_pos_discount_in_min The POS side discount amount in minor unit. This is only applicable for STO order
+     *
+     * @return self
+     */
+    public function setOfflinePosDiscountInMin($offline_pos_discount_in_min)
+    {
+        if (is_null($offline_pos_discount_in_min)) {
+            throw new \InvalidArgumentException('non-nullable offline_pos_discount_in_min cannot be null');
+        }
+        $this->container['offline_pos_discount_in_min'] = $offline_pos_discount_in_min;
 
         return $this;
     }

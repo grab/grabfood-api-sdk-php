@@ -333,6 +333,8 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
     public const AVAILABLE_STATUS_UNAVAILABLETODAY = 'UNAVAILABLETODAY';
     public const AVAILABLE_STATUS_UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api';
     public const SPECIAL_TYPE_ALCOHOL = 'alcohol';
+    public const SPECIAL_TYPE_TOBACCO = 'tobacco';
+    public const SPECIAL_TYPE_MEAL_FOR_ONE = 'meal_for_one';
     public const SPECIAL_TYPE_EMPTY = '';
     public const SPECIAL_TYPE_UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api';
 
@@ -361,6 +363,8 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::SPECIAL_TYPE_ALCOHOL,
+            self::SPECIAL_TYPE_TOBACCO,
+            self::SPECIAL_TYPE_MEAL_FOR_ONE,
             self::SPECIAL_TYPE_EMPTY,
             self::SPECIAL_TYPE_UNKNOWN_DEFAULT_OPEN_API,
         ];
@@ -739,7 +743,7 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets special_type
      *
-     * @param string|null $special_type The item's special Tag. Refer to FAQs for more details about [specialType](#section/Menu/What's-specialType).
+     * @param string|null $special_type The special tag of an item. For implementation details and behavior specific to each value, refer to: **Alcohol & Tobacco** [FAQ](#section/Menu/What-happens-when-an-item-is-tagged-with-specialType-alcohol-or-tobacco) and **Meal for One** [documentation](#section/Meal-for-One).
      *
      * @return self
      */
@@ -861,7 +865,7 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets max_stock
      *
-     * @param int|null $max_stock Available stocks under inventory for this item. Auto reduce when there is order placed for this item. Empty value implies no limit.  > Note: It is necessary to set `maxStock` to 0 if the `availableStatus` of the item is `\"UNAVAILABLE\"`. Item will be set to `\"AVAILABLE\"` if `maxStock` > 0.
+     * @param int|null $max_stock Available stocks under inventory for this item. Auto reduce when there is order placed for this item. The value **must not exceed** `9999999`. Empty value implies no limit.  > Note: It is necessary to set `maxStock` to 0 if the `availableStatus` of the item is `\"UNAVAILABLE\"`. Item will be set to `\"AVAILABLE\"` if `maxStock` > 0.
      *
      * @return self
      */

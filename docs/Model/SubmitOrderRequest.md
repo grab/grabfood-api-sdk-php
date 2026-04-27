@@ -25,5 +25,7 @@ Name | Type | Description | Notes
 **receiver** | [**\Grab\GrabfoodApiSdk\Model\Receiver**](Receiver.md) |  | [optional]
 **order_ready_estimation** | [**\Grab\GrabfoodApiSdk\Model\OrderReadyEstimation**](OrderReadyEstimation.md) |  | [optional]
 **membership_id** | **string** | Membership ID for loyalty project. Only present for loyalty program partners. Empty if not applicable. | [optional]
+**discounts** | [**\Grab\GrabfoodApiSdk\Model\GrabDiscount1[]**](GrabDiscount1.md) | The discounts that are applicable for the paybill order in dineout STO case. &#x60;null&#x60; when there is no discount applied. This is only applicable for STO order | [optional]
+**payments** | [**\Grab\GrabfoodApiSdk\Model\Payment[]**](Payment.md) | An array of payment objects. &#x60;null&#x60; when there is no payment info from pos. This is only applicable for STO order | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
