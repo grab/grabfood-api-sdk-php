@@ -38,7 +38,7 @@ use \Grab\GrabfoodApiSdk\ObjectSerializer;
  * Address Class Doc Comment
  *
  * @category Class
- * @description A JSON object containing the receiver’s location information.
+ * @description A JSON object containing the receiver’s location information. Only applicable for orders that are delivered by the restaurant. &#x60;null&#x60; if not applicable.
  * @package  Grab\GrabfoodApiSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

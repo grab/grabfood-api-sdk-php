@@ -319,6 +319,10 @@ class CreateCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
+        if ((mb_strlen($this->container['name']) > 256)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 256.";
+        }
+
         if ($this->container['conditions'] === null) {
             $invalidProperties[] = "'conditions' can't be null";
         }
@@ -393,6 +397,10 @@ class CreateCampaignRequest implements ModelInterface, ArrayAccess, \JsonSeriali
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
+        if ((mb_strlen($name) > 256)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling CreateCampaignRequest., must be smaller than or equal to 256.');
+        }
+
         $this->container['name'] = $name;
 
         return $this;

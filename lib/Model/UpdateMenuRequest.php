@@ -587,7 +587,7 @@ class UpdateMenuRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets max_stock
      *
-     * @param int|null $max_stock Available stocks under inventory for this item. Auto reduce when there is order placed for this item.  Note: It is necessary to set `maxStock` to 0 if the `availableStatus` of the item is \"UNAVAILABLE\". Item will be set to \"AVAILABLE\" if `maxStock` > 0.
+     * @param int|null $max_stock Available stocks under inventory for this item. Auto reduce when there is order placed for this item. The value **must not exceed** `9999999`.  Note: It is necessary to set `maxStock` to 0 if the `availableStatus` of the item is \"UNAVAILABLE\". Item will be set to \"AVAILABLE\" if `maxStock` > 0.
      *
      * @return self
      */

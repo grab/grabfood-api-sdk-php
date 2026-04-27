@@ -63,7 +63,8 @@ class EditOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'item_id' => 'string',
         'status' => 'string',
         'quantity' => 'int',
-        'is_external_item_id' => 'bool'
+        'is_external_item_id' => 'bool',
+        'modifiers' => '\Grab\GrabfoodApiSdk\Model\EditOrderItemModifier[]'
     ];
 
     /**
@@ -77,7 +78,8 @@ class EditOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'item_id' => null,
         'status' => null,
         'quantity' => 'int64',
-        'is_external_item_id' => null
+        'is_external_item_id' => null,
+        'modifiers' => null
     ];
 
     /**
@@ -89,7 +91,8 @@ class EditOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'item_id' => false,
         'status' => false,
         'quantity' => false,
-        'is_external_item_id' => false
+        'is_external_item_id' => false,
+        'modifiers' => false
     ];
 
     /**
@@ -181,7 +184,8 @@ class EditOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'item_id' => 'itemID',
         'status' => 'status',
         'quantity' => 'quantity',
-        'is_external_item_id' => 'isExternalItemID'
+        'is_external_item_id' => 'isExternalItemID',
+        'modifiers' => 'modifiers'
     ];
 
     /**
@@ -193,7 +197,8 @@ class EditOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'item_id' => 'setItemId',
         'status' => 'setStatus',
         'quantity' => 'setQuantity',
-        'is_external_item_id' => 'setIsExternalItemId'
+        'is_external_item_id' => 'setIsExternalItemId',
+        'modifiers' => 'setModifiers'
     ];
 
     /**
@@ -205,7 +210,8 @@ class EditOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'item_id' => 'getItemId',
         'status' => 'getStatus',
         'quantity' => 'getQuantity',
-        'is_external_item_id' => 'getIsExternalItemId'
+        'is_external_item_id' => 'getIsExternalItemId',
+        'modifiers' => 'getModifiers'
     ];
 
     /**
@@ -290,6 +296,7 @@ class EditOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('status', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
         $this->setIfExists('is_external_item_id', $data ?? [], null);
+        $this->setIfExists('modifiers', $data ?? [], null);
     }
 
     /**
@@ -463,6 +470,33 @@ class EditOrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable is_external_item_id cannot be null');
         }
         $this->container['is_external_item_id'] = $is_external_item_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets modifiers
+     *
+     * @return \Grab\GrabfoodApiSdk\Model\EditOrderItemModifier[]|null
+     */
+    public function getModifiers()
+    {
+        return $this->container['modifiers'];
+    }
+
+    /**
+     * Sets modifiers
+     *
+     * @param \Grab\GrabfoodApiSdk\Model\EditOrderItemModifier[]|null $modifiers The modifiers of the item. Only required when you want to update the modifiers of the item. Refer [Edit Order](#section/Edit-Order) for more use cases.
+     *
+     * @return self
+     */
+    public function setModifiers($modifiers)
+    {
+        if (is_null($modifiers)) {
+            throw new \InvalidArgumentException('non-nullable modifiers cannot be null');
+        }
+        $this->container['modifiers'] = $modifiers;
 
         return $this;
     }

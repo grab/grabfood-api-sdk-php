@@ -494,7 +494,7 @@ class MenuModifier implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets available_status
      *
-     * @param string $available_status The status for the modifier. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).
+     * @param string $available_status The status for the modifier. Refer to FAQs for more details about [availableStatus](#section/Menu/What-is-availableStatus).   Note: `HIDE` will only update the modifier to unavailable, remove the modifier from the menu if you want to hide it entirely.
      *
      * @return self
      */

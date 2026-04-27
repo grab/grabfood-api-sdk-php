@@ -367,6 +367,10 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
+        if ((mb_strlen($this->container['name']) > 256)) {
+            $invalidProperties[] = "invalid value for 'name', the character length must be smaller than or equal to 256.";
+        }
+
         if (!is_null($this->container['custom_tag']) && (mb_strlen($this->container['custom_tag']) > 22)) {
             $invalidProperties[] = "invalid value for 'custom_tag', the character length must be smaller than or equal to 22.";
         }
@@ -499,6 +503,10 @@ class Campaign implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($name)) {
             throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
+        if ((mb_strlen($name) > 256)) {
+            throw new \InvalidArgumentException('invalid length for $name when calling Campaign., must be smaller than or equal to 256.');
+        }
+
         $this->container['name'] = $name;
 
         return $this;

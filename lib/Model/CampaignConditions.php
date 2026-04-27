@@ -348,6 +348,9 @@ class CampaignConditions implements ModelInterface, ArrayAccess, \JsonSerializab
             );
         }
 
+        if ($this->container['working_hour'] === null) {
+            $invalidProperties[] = "'working_hour' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -511,7 +514,7 @@ class CampaignConditions implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets working_hour
      *
-     * @return \Grab\GrabfoodApiSdk\Model\WorkingHour|null
+     * @return \Grab\GrabfoodApiSdk\Model\WorkingHour
      */
     public function getWorkingHour()
     {
@@ -521,7 +524,7 @@ class CampaignConditions implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets working_hour
      *
-     * @param \Grab\GrabfoodApiSdk\Model\WorkingHour|null $working_hour working_hour
+     * @param \Grab\GrabfoodApiSdk\Model\WorkingHour $working_hour working_hour
      *
      * @return self
      */

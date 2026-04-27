@@ -38,7 +38,7 @@ use \Grab\GrabfoodApiSdk\ObjectSerializer;
  * Order Class Doc Comment
  *
  * @category Class
- * @description A JSON object containing the order information.
+ * @description A JSON object containing the order information. This is only applicable for STO order in Push Order State Webhook
  * @package  Grab\GrabfoodApiSdk
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -81,7 +81,9 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'dine_in' => '\Grab\GrabfoodApiSdk\Model\DineIn',
         'receiver' => '\Grab\GrabfoodApiSdk\Model\Receiver',
         'order_ready_estimation' => '\Grab\GrabfoodApiSdk\Model\OrderReadyEstimation',
-        'membership_id' => 'string'
+        'membership_id' => 'string',
+        'discounts' => '\Grab\GrabfoodApiSdk\Model\GrabDiscount1[]',
+        'payments' => '\Grab\GrabfoodApiSdk\Model\Payment[]'
     ];
 
     /**
@@ -112,7 +114,9 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'dine_in' => null,
         'receiver' => null,
         'order_ready_estimation' => null,
-        'membership_id' => null
+        'membership_id' => null,
+        'discounts' => null,
+        'payments' => null
     ];
 
     /**
@@ -140,8 +144,10 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => false,
         'dine_in' => true,
         'receiver' => true,
-        'order_ready_estimation' => false,
-        'membership_id' => false
+        'order_ready_estimation' => true,
+        'membership_id' => false,
+        'discounts' => true,
+        'payments' => true
     ];
 
     /**
@@ -250,7 +256,9 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'dine_in' => 'dineIn',
         'receiver' => 'receiver',
         'order_ready_estimation' => 'orderReadyEstimation',
-        'membership_id' => 'membershipID'
+        'membership_id' => 'membershipID',
+        'discounts' => 'discounts',
+        'payments' => 'payments'
     ];
 
     /**
@@ -279,7 +287,9 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'dine_in' => 'setDineIn',
         'receiver' => 'setReceiver',
         'order_ready_estimation' => 'setOrderReadyEstimation',
-        'membership_id' => 'setMembershipId'
+        'membership_id' => 'setMembershipId',
+        'discounts' => 'setDiscounts',
+        'payments' => 'setPayments'
     ];
 
     /**
@@ -308,7 +318,9 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         'dine_in' => 'getDineIn',
         'receiver' => 'getReceiver',
         'order_ready_estimation' => 'getOrderReadyEstimation',
-        'membership_id' => 'getMembershipId'
+        'membership_id' => 'getMembershipId',
+        'discounts' => 'getDiscounts',
+        'payments' => 'getPayments'
     ];
 
     /**
@@ -406,6 +418,8 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('receiver', $data ?? [], null);
         $this->setIfExists('order_ready_estimation', $data ?? [], null);
         $this->setIfExists('membership_id', $data ?? [], null);
+        $this->setIfExists('discounts', $data ?? [], null);
+        $this->setIfExists('payments', $data ?? [], null);
     }
 
     /**
@@ -1060,7 +1074,14 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOrderReadyEstimation($order_ready_estimation)
     {
         if (is_null($order_ready_estimation)) {
-            throw new \InvalidArgumentException('non-nullable order_ready_estimation cannot be null');
+            array_push($this->openAPINullablesSetToNull, 'order_ready_estimation');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('order_ready_estimation', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
         }
         $this->container['order_ready_estimation'] = $order_ready_estimation;
 
@@ -1090,6 +1111,74 @@ class Order implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable membership_id cannot be null');
         }
         $this->container['membership_id'] = $membership_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets discounts
+     *
+     * @return \Grab\GrabfoodApiSdk\Model\GrabDiscount1[]|null
+     */
+    public function getDiscounts()
+    {
+        return $this->container['discounts'];
+    }
+
+    /**
+     * Sets discounts
+     *
+     * @param \Grab\GrabfoodApiSdk\Model\GrabDiscount1[]|null $discounts The discounts that are applicable for the paybill order in dineout STO case. `null` when there is no discount applied. This is only applicable for STO order
+     *
+     * @return self
+     */
+    public function setDiscounts($discounts)
+    {
+        if (is_null($discounts)) {
+            array_push($this->openAPINullablesSetToNull, 'discounts');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('discounts', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['discounts'] = $discounts;
+
+        return $this;
+    }
+
+    /**
+     * Gets payments
+     *
+     * @return \Grab\GrabfoodApiSdk\Model\Payment[]|null
+     */
+    public function getPayments()
+    {
+        return $this->container['payments'];
+    }
+
+    /**
+     * Sets payments
+     *
+     * @param \Grab\GrabfoodApiSdk\Model\Payment[]|null $payments An array of payment objects. `null` when there is no payment info from pos. This is only applicable for STO order
+     *
+     * @return self
+     */
+    public function setPayments($payments)
+    {
+        if (is_null($payments)) {
+            array_push($this->openAPINullablesSetToNull, 'payments');
+        } else {
+            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
+            $index = array_search('payments', $nullablesSetToNull);
+            if ($index !== FALSE) {
+                unset($nullablesSetToNull[$index]);
+                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
+            }
+        }
+        $this->container['payments'] = $payments;
 
         return $this;
     }

@@ -249,21 +249,6 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-    public const QUANTITY_1 = 1;
-    public const QUANTITY_unknown_default_open_api = 11184809;
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getQuantityAllowableValues()
-    {
-        return [
-            self::QUANTITY_1,
-            self::QUANTITY_unknown_default_open_api,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -315,15 +300,6 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
 
         if (!is_null($this->container['id']) && (mb_strlen($this->container['id']) > 64)) {
             $invalidProperties[] = "invalid value for 'id', the character length must be smaller than or equal to 64.";
-        }
-
-        $allowedValues = $this->getQuantityAllowableValues();
-        if (!is_null($this->container['quantity']) && !in_array($this->container['quantity'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'quantity', must be one of '%s'",
-                $this->container['quantity'],
-                implode("', '", $allowedValues)
-            );
         }
 
         return $invalidProperties;
@@ -439,7 +415,7 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets quantity
      *
-     * @param int|null $quantity The number of modifiers present. The value is always 1.
+     * @param int|null $quantity The number of modifiers present.
      *
      * @return self
      */
@@ -447,16 +423,6 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         if (is_null($quantity)) {
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
-        }
-        $allowedValues = $this->getQuantityAllowableValues();
-        if (!in_array($quantity, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'quantity', must be one of '%s'",
-                    $quantity,
-                    implode("', '", $allowedValues)
-                )
-            );
         }
         $this->container['quantity'] = $quantity;
 

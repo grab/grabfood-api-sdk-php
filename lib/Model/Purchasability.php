@@ -348,7 +348,7 @@ class Purchasability implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery_on_demand_grab_app
      *
-     * @param bool|null $delivery_on_demand_grab_app delivery_on_demand_grab_app
+     * @param bool|null $delivery_on_demand_grab_app **Case-sensitive**.
      *
      * @return self
      */
@@ -375,7 +375,7 @@ class Purchasability implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery_scheduled_grab_app
      *
-     * @param bool|null $delivery_scheduled_grab_app delivery_scheduled_grab_app
+     * @param bool|null $delivery_scheduled_grab_app **Case-sensitive**.
      *
      * @return self
      */
@@ -402,7 +402,7 @@ class Purchasability implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets self_pick_up_on_demand_grab_app
      *
-     * @param bool|null $self_pick_up_on_demand_grab_app self_pick_up_on_demand_grab_app
+     * @param bool|null $self_pick_up_on_demand_grab_app **Case-sensitive**.
      *
      * @return self
      */
@@ -429,7 +429,7 @@ class Purchasability implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets dine_in_on_demand_grab_app
      *
-     * @param bool|null $dine_in_on_demand_grab_app dine_in_on_demand_grab_app
+     * @param bool|null $dine_in_on_demand_grab_app **Case-sensitive**.
      *
      * @return self
      */
@@ -456,7 +456,7 @@ class Purchasability implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery_on_demand_store_front
      *
-     * @param bool|null $delivery_on_demand_store_front delivery_on_demand_store_front
+     * @param bool|null $delivery_on_demand_store_front **Case-sensitive**.
      *
      * @return self
      */
@@ -483,7 +483,7 @@ class Purchasability implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets delivery_scheduled_store_front
      *
-     * @param bool|null $delivery_scheduled_store_front delivery_scheduled_store_front
+     * @param bool|null $delivery_scheduled_store_front **Case-sensitive**.
      *
      * @return self
      */
@@ -510,7 +510,7 @@ class Purchasability implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets self_pick_up_on_demand_store_front
      *
-     * @param bool|null $self_pick_up_on_demand_store_front self_pick_up_on_demand_store_front
+     * @param bool|null $self_pick_up_on_demand_store_front **Case-sensitive**.
      *
      * @return self
      */

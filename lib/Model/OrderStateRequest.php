@@ -67,7 +67,8 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'state' => 'string',
         'driver_eta' => 'int',
         'code' => 'string',
-        'message' => 'string'
+        'message' => 'string',
+        'order' => '\Grab\GrabfoodApiSdk\Model\Order'
     ];
 
     /**
@@ -84,7 +85,8 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'state' => null,
         'driver_eta' => null,
         'code' => null,
-        'message' => null
+        'message' => null,
+        'order' => null
     ];
 
     /**
@@ -99,7 +101,8 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'state' => false,
         'driver_eta' => true,
         'code' => false,
-        'message' => false
+        'message' => false,
+        'order' => false
     ];
 
     /**
@@ -194,7 +197,8 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'state' => 'state',
         'driver_eta' => 'driverETA',
         'code' => 'code',
-        'message' => 'message'
+        'message' => 'message',
+        'order' => 'order'
     ];
 
     /**
@@ -209,7 +213,8 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'state' => 'setState',
         'driver_eta' => 'setDriverEta',
         'code' => 'setCode',
-        'message' => 'setMessage'
+        'message' => 'setMessage',
+        'order' => 'setOrder'
     ];
 
     /**
@@ -224,7 +229,8 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         'state' => 'getState',
         'driver_eta' => 'getDriverEta',
         'code' => 'getCode',
-        'message' => 'getMessage'
+        'message' => 'getMessage',
+        'order' => 'getOrder'
     ];
 
     /**
@@ -273,6 +279,9 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
     public const STATE_DRIVER_ARRIVED = 'DRIVER_ARRIVED';
     public const STATE_COLLECTED = 'COLLECTED';
     public const STATE_DELIVERED = 'DELIVERED';
+    public const STATE_BILL_PAID = 'BILL_PAID';
+    public const STATE_COMPLETED = 'COMPLETED';
+    public const STATE_REFUNDED = 'REFUNDED';
     public const STATE_FAILED = 'FAILED';
     public const STATE_CANCELLED = 'CANCELLED';
     public const STATE_UNKNOWN_DEFAULT_OPEN_API = 'unknown_default_open_api';
@@ -290,6 +299,9 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             self::STATE_DRIVER_ARRIVED,
             self::STATE_COLLECTED,
             self::STATE_DELIVERED,
+            self::STATE_BILL_PAID,
+            self::STATE_COMPLETED,
+            self::STATE_REFUNDED,
             self::STATE_FAILED,
             self::STATE_CANCELLED,
             self::STATE_UNKNOWN_DEFAULT_OPEN_API,
@@ -318,6 +330,7 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('driver_eta', $data ?? [], null);
         $this->setIfExists('code', $data ?? [], null);
         $this->setIfExists('message', $data ?? [], null);
+        $this->setIfExists('order', $data ?? [], null);
     }
 
     /**
@@ -582,6 +595,33 @@ class OrderStateRequest implements ModelInterface, ArrayAccess, \JsonSerializabl
             throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
         $this->container['message'] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Gets order
+     *
+     * @return \Grab\GrabfoodApiSdk\Model\Order|null
+     */
+    public function getOrder()
+    {
+        return $this->container['order'];
+    }
+
+    /**
+     * Sets order
+     *
+     * @param \Grab\GrabfoodApiSdk\Model\Order|null $order order
+     *
+     * @return self
+     */
+    public function setOrder($order)
+    {
+        if (is_null($order)) {
+            throw new \InvalidArgumentException('non-nullable order cannot be null');
+        }
+        $this->container['order'] = $order;
 
         return $this;
     }
