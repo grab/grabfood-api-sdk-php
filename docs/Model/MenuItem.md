@@ -21,5 +21,6 @@ Name | Type | Description | Notes
 **advanced_pricing** | [**\Grab\GrabfoodApiSdk\Model\AdvancedPricing**](AdvancedPricing.md) |  | [optional]
 **purchasability** | [**\Grab\GrabfoodApiSdk\Model\Purchasability**](Purchasability.md) |  | [optional]
 **modifier_groups** | [**\Grab\GrabfoodApiSdk\Model\ModifierGroup[]**](ModifierGroup.md) | An array of the modifierGroup JSON objects. Max 30 allowed per item. Refer to [Modifier groups](#modifier-groups) for more information. | [optional]
+**bcrs_unit** | **int** | **For Singapore only.** Specifies the number of BCRS (Beverage Container Return Scheme) containers for this item. Only valid when value is greater than 0. If set to 0 or omitted, existing BCRS value will be removed. Refer to [FAQ](#section/Menu/How-do-I-set-up-BCRS-for-items-and-modifiers) for more details. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

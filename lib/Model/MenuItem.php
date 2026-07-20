@@ -76,7 +76,8 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'sequence' => 'int',
         'advanced_pricing' => '\Grab\GrabfoodApiSdk\Model\AdvancedPricing',
         'purchasability' => '\Grab\GrabfoodApiSdk\Model\Purchasability',
-        'modifier_groups' => '\Grab\GrabfoodApiSdk\Model\ModifierGroup[]'
+        'modifier_groups' => '\Grab\GrabfoodApiSdk\Model\ModifierGroup[]',
+        'bcrs_unit' => 'int'
     ];
 
     /**
@@ -103,7 +104,8 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'sequence' => null,
         'advanced_pricing' => null,
         'purchasability' => null,
-        'modifier_groups' => null
+        'modifier_groups' => null,
+        'bcrs_unit' => 'int32'
     ];
 
     /**
@@ -128,7 +130,8 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'sequence' => false,
         'advanced_pricing' => false,
         'purchasability' => false,
-        'modifier_groups' => false
+        'modifier_groups' => false,
+        'bcrs_unit' => false
     ];
 
     /**
@@ -233,7 +236,8 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'sequence' => 'sequence',
         'advanced_pricing' => 'advancedPricing',
         'purchasability' => 'purchasability',
-        'modifier_groups' => 'modifierGroups'
+        'modifier_groups' => 'modifierGroups',
+        'bcrs_unit' => 'BCRSUnit'
     ];
 
     /**
@@ -258,7 +262,8 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'sequence' => 'setSequence',
         'advanced_pricing' => 'setAdvancedPricing',
         'purchasability' => 'setPurchasability',
-        'modifier_groups' => 'setModifierGroups'
+        'modifier_groups' => 'setModifierGroups',
+        'bcrs_unit' => 'setBcrsUnit'
     ];
 
     /**
@@ -283,7 +288,8 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'sequence' => 'getSequence',
         'advanced_pricing' => 'getAdvancedPricing',
         'purchasability' => 'getPurchasability',
-        'modifier_groups' => 'getModifierGroups'
+        'modifier_groups' => 'getModifierGroups',
+        'bcrs_unit' => 'getBcrsUnit'
     ];
 
     /**
@@ -402,6 +408,7 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('advanced_pricing', $data ?? [], null);
         $this->setIfExists('purchasability', $data ?? [], null);
         $this->setIfExists('modifier_groups', $data ?? [], null);
+        $this->setIfExists('bcrs_unit', $data ?? [], null);
     }
 
     /**
@@ -983,6 +990,33 @@ class MenuItem implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable modifier_groups cannot be null');
         }
         $this->container['modifier_groups'] = $modifier_groups;
+
+        return $this;
+    }
+
+    /**
+     * Gets bcrs_unit
+     *
+     * @return int|null
+     */
+    public function getBcrsUnit()
+    {
+        return $this->container['bcrs_unit'];
+    }
+
+    /**
+     * Sets bcrs_unit
+     *
+     * @param int|null $bcrs_unit **For Singapore only.** Specifies the number of BCRS (Beverage Container Return Scheme) containers for this item. Only valid when value is greater than 0. If set to 0 or omitted, existing BCRS value will be removed. Refer to [FAQ](#section/Menu/How-do-I-set-up-BCRS-for-items-and-modifiers) for more details.
+     *
+     * @return self
+     */
+    public function setBcrsUnit($bcrs_unit)
+    {
+        if (is_null($bcrs_unit)) {
+            throw new \InvalidArgumentException('non-nullable bcrs_unit cannot be null');
+        }
+        $this->container['bcrs_unit'] = $bcrs_unit;
 
         return $this;
     }

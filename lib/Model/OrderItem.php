@@ -66,6 +66,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => 'int',
         'tax' => 'int',
         'specifications' => 'string',
+        'bcrs_unit_count' => 'int',
         'out_of_stock_instruction' => '\Grab\GrabfoodApiSdk\Model\OutOfStockInstruction',
         'modifiers' => '\Grab\GrabfoodApiSdk\Model\OrderItemModifier[]'
     ];
@@ -84,6 +85,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => 'int64',
         'tax' => 'int64',
         'specifications' => null,
+        'bcrs_unit_count' => 'int32',
         'out_of_stock_instruction' => null,
         'modifiers' => null
     ];
@@ -100,6 +102,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => false,
         'tax' => false,
         'specifications' => false,
+        'bcrs_unit_count' => false,
         'out_of_stock_instruction' => true,
         'modifiers' => false
     ];
@@ -196,6 +199,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => 'price',
         'tax' => 'tax',
         'specifications' => 'specifications',
+        'bcrs_unit_count' => 'bcrsUnitCount',
         'out_of_stock_instruction' => 'outOfStockInstruction',
         'modifiers' => 'modifiers'
     ];
@@ -212,6 +216,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => 'setPrice',
         'tax' => 'setTax',
         'specifications' => 'setSpecifications',
+        'bcrs_unit_count' => 'setBcrsUnitCount',
         'out_of_stock_instruction' => 'setOutOfStockInstruction',
         'modifiers' => 'setModifiers'
     ];
@@ -228,6 +233,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         'price' => 'getPrice',
         'tax' => 'getTax',
         'specifications' => 'getSpecifications',
+        'bcrs_unit_count' => 'getBcrsUnitCount',
         'out_of_stock_instruction' => 'getOutOfStockInstruction',
         'modifiers' => 'getModifiers'
     ];
@@ -295,6 +301,7 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('tax', $data ?? [], null);
         $this->setIfExists('specifications', $data ?? [], null);
+        $this->setIfExists('bcrs_unit_count', $data ?? [], null);
         $this->setIfExists('out_of_stock_instruction', $data ?? [], null);
         $this->setIfExists('modifiers', $data ?? [], null);
     }
@@ -519,6 +526,33 @@ class OrderItem implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['specifications'] = $specifications;
+
+        return $this;
+    }
+
+    /**
+     * Gets bcrs_unit_count
+     *
+     * @return int|null
+     */
+    public function getBcrsUnitCount()
+    {
+        return $this->container['bcrs_unit_count'];
+    }
+
+    /**
+     * Sets bcrs_unit_count
+     *
+     * @param int|null $bcrs_unit_count **For Singapore only.** The number of BCRS (Beverage Container Return Scheme) eligible containers for this item. Only present when the item is BCRS-eligible and the merchant has BCRS enabled; omitted otherwise. This represents how many beverage containers (plastic bottles or metal cans) the item contributes towards the BCRS deposit charge.
+     *
+     * @return self
+     */
+    public function setBcrsUnitCount($bcrs_unit_count)
+    {
+        if (is_null($bcrs_unit_count)) {
+            throw new \InvalidArgumentException('non-nullable bcrs_unit_count cannot be null');
+        }
+        $this->container['bcrs_unit_count'] = $bcrs_unit_count;
 
         return $this;
     }

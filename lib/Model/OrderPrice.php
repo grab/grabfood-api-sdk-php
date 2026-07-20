@@ -70,6 +70,7 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'basket_promo' => 'int',
         'delivery_fee' => 'int',
         'small_order_fee' => 'int',
+        'bcrs_deposit_fee_in_min' => 'int',
         'eater_payment' => 'int',
         'total' => 'int',
         'merchant_earning' => '\Grab\GrabfoodApiSdk\Model\MerchantEarning'
@@ -92,6 +93,7 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'basket_promo' => 'int64',
         'delivery_fee' => 'int64',
         'small_order_fee' => 'int64',
+        'bcrs_deposit_fee_in_min' => 'int64',
         'eater_payment' => 'int64',
         'total' => 'int64',
         'merchant_earning' => null
@@ -112,6 +114,7 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'basket_promo' => false,
         'delivery_fee' => false,
         'small_order_fee' => false,
+        'bcrs_deposit_fee_in_min' => false,
         'eater_payment' => false,
         'total' => false,
         'merchant_earning' => true
@@ -212,6 +215,7 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'basket_promo' => 'basketPromo',
         'delivery_fee' => 'deliveryFee',
         'small_order_fee' => 'smallOrderFee',
+        'bcrs_deposit_fee_in_min' => 'bcrsDepositFeeInMin',
         'eater_payment' => 'eaterPayment',
         'total' => 'total',
         'merchant_earning' => 'merchantEarning'
@@ -232,6 +236,7 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'basket_promo' => 'setBasketPromo',
         'delivery_fee' => 'setDeliveryFee',
         'small_order_fee' => 'setSmallOrderFee',
+        'bcrs_deposit_fee_in_min' => 'setBcrsDepositFeeInMin',
         'eater_payment' => 'setEaterPayment',
         'total' => 'setTotal',
         'merchant_earning' => 'setMerchantEarning'
@@ -252,6 +257,7 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         'basket_promo' => 'getBasketPromo',
         'delivery_fee' => 'getDeliveryFee',
         'small_order_fee' => 'getSmallOrderFee',
+        'bcrs_deposit_fee_in_min' => 'getBcrsDepositFeeInMin',
         'eater_payment' => 'getEaterPayment',
         'total' => 'getTotal',
         'merchant_earning' => 'getMerchantEarning'
@@ -323,6 +329,7 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('basket_promo', $data ?? [], null);
         $this->setIfExists('delivery_fee', $data ?? [], null);
         $this->setIfExists('small_order_fee', $data ?? [], null);
+        $this->setIfExists('bcrs_deposit_fee_in_min', $data ?? [], null);
         $this->setIfExists('eater_payment', $data ?? [], null);
         $this->setIfExists('total', $data ?? [], null);
         $this->setIfExists('merchant_earning', $data ?? [], null);
@@ -617,6 +624,33 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets bcrs_deposit_fee_in_min
+     *
+     * @return int|null
+     */
+    public function getBcrsDepositFeeInMin()
+    {
+        return $this->container['bcrs_deposit_fee_in_min'];
+    }
+
+    /**
+     * Sets bcrs_deposit_fee_in_min
+     *
+     * @param int|null $bcrs_deposit_fee_in_min The total BCRS (Beverage Container Return Scheme) deposit in the minor unit. A Singapore government-mandated refundable deposit charged to the consumer for eligible beverage containers (plastic bottles and metal cans). This is a non-taxable, non-commissionable pass-through — collected from consumers and not part of net sales. Only present when the order contains BCRS-eligible items; omitted otherwise.
+     *
+     * @return self
+     */
+    public function setBcrsDepositFeeInMin($bcrs_deposit_fee_in_min)
+    {
+        if (is_null($bcrs_deposit_fee_in_min)) {
+            throw new \InvalidArgumentException('non-nullable bcrs_deposit_fee_in_min cannot be null');
+        }
+        $this->container['bcrs_deposit_fee_in_min'] = $bcrs_deposit_fee_in_min;
+
+        return $this;
+    }
+
+    /**
      * Gets eater_payment
      *
      * @return int|null
@@ -629,7 +663,7 @@ class OrderPrice implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets eater_payment
      *
-     * @param int|null $eater_payment The total amount paid by the consumer in the minor unit, excluding some additional fees charged by GrabFood. Only present when `paymentType:CASH` or `orderType:DeliveredByRestaurant`. Otherwise, it will be set to `0`.  ``` eaterPayment = (subtotal + merchantChargeFee + deliveryFee) - (sum of all promo) | (2550+400)-775=2175
+     * @param int|null $eater_payment The total amount paid by the consumer in the minor unit, excluding some additional fees charged by GrabFood. Only present when `paymentType:CASH` or `orderType:DeliveredByRestaurant`. Otherwise, it will be set to `0`. ``` eaterPayment = (subtotal + merchantChargeFee + deliveryFee + bcrsDepositFeeInMin) - (sum of all promo) | (2550+0+400+0)-775=2175
      *
      * @return self
      */

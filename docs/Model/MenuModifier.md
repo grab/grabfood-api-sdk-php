@@ -12,5 +12,6 @@ Name | Type | Description | Notes
 **barcode** | **string** | The barcode Number (GTIN). GTIN must be 8, 12, 13, 14 numeric digits. | [optional]
 **sequence** | **int** | The sort or display order of the modifier within the menu. | [optional]
 **advanced_pricing** | [**\Grab\GrabfoodApiSdk\Model\AdvancedPricing**](AdvancedPricing.md) |  | [optional]
+**bcrs_unit** | **int** | **For Singapore only.** Specifies the number of BCRS (Beverage Container Return Scheme) containers for this modifier. Only valid when value is greater than 0. If set to 0 or omitted, existing BCRS value will be removed. Refer to [FAQ](#section/Menu/How-do-I-set-up-BCRS-for-items-and-modifiers) for more details. | [optional]
 
 [[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)

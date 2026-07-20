@@ -63,7 +63,8 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         'id' => 'string',
         'price' => 'int',
         'tax' => 'int',
-        'quantity' => 'int'
+        'quantity' => 'int',
+        'bcrs_unit_count' => 'int'
     ];
 
     /**
@@ -77,7 +78,8 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         'id' => null,
         'price' => 'int64',
         'tax' => 'int64',
-        'quantity' => null
+        'quantity' => null,
+        'bcrs_unit_count' => 'int32'
     ];
 
     /**
@@ -89,7 +91,8 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         'id' => false,
         'price' => false,
         'tax' => false,
-        'quantity' => false
+        'quantity' => false,
+        'bcrs_unit_count' => false
     ];
 
     /**
@@ -181,7 +184,8 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         'id' => 'id',
         'price' => 'price',
         'tax' => 'tax',
-        'quantity' => 'quantity'
+        'quantity' => 'quantity',
+        'bcrs_unit_count' => 'bcrsUnitCount'
     ];
 
     /**
@@ -193,7 +197,8 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         'id' => 'setId',
         'price' => 'setPrice',
         'tax' => 'setTax',
-        'quantity' => 'setQuantity'
+        'quantity' => 'setQuantity',
+        'bcrs_unit_count' => 'setBcrsUnitCount'
     ];
 
     /**
@@ -205,7 +210,8 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         'id' => 'getId',
         'price' => 'getPrice',
         'tax' => 'getTax',
-        'quantity' => 'getQuantity'
+        'quantity' => 'getQuantity',
+        'bcrs_unit_count' => 'getBcrsUnitCount'
     ];
 
     /**
@@ -249,6 +255,21 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
+    public const QUANTITY_1 = 1;
+    public const QUANTITY_unknown_default_open_api = 11184809;
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getQuantityAllowableValues()
+    {
+        return [
+            self::QUANTITY_1,
+            self::QUANTITY_unknown_default_open_api,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -269,6 +290,7 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         $this->setIfExists('price', $data ?? [], null);
         $this->setIfExists('tax', $data ?? [], null);
         $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('bcrs_unit_count', $data ?? [], null);
     }
 
     /**
@@ -300,6 +322,15 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
 
         if (!is_null($this->container['id']) && (mb_strlen($this->container['id']) > 64)) {
             $invalidProperties[] = "invalid value for 'id', the character length must be smaller than or equal to 64.";
+        }
+
+        $allowedValues = $this->getQuantityAllowableValues();
+        if (!is_null($this->container['quantity']) && !in_array($this->container['quantity'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'quantity', must be one of '%s'",
+                $this->container['quantity'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -415,7 +446,7 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets quantity
      *
-     * @param int|null $quantity The number of modifiers present.
+     * @param int|null $quantity The number of modifiers present. The value is always 1.
      *
      * @return self
      */
@@ -424,7 +455,44 @@ class OrderItemModifier implements ModelInterface, ArrayAccess, \JsonSerializabl
         if (is_null($quantity)) {
             throw new \InvalidArgumentException('non-nullable quantity cannot be null');
         }
+        $allowedValues = $this->getQuantityAllowableValues();
+        if (!in_array($quantity, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'quantity', must be one of '%s'",
+                    $quantity,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets bcrs_unit_count
+     *
+     * @return int|null
+     */
+    public function getBcrsUnitCount()
+    {
+        return $this->container['bcrs_unit_count'];
+    }
+
+    /**
+     * Sets bcrs_unit_count
+     *
+     * @param int|null $bcrs_unit_count **For Singapore only.** The number of BCRS (Beverage Container Return Scheme) eligible containers for this modifier. Only present when the modifier is BCRS-eligible and the merchant has BCRS enabled; omitted otherwise.
+     *
+     * @return self
+     */
+    public function setBcrsUnitCount($bcrs_unit_count)
+    {
+        if (is_null($bcrs_unit_count)) {
+            throw new \InvalidArgumentException('non-nullable bcrs_unit_count cannot be null');
+        }
+        $this->container['bcrs_unit_count'] = $bcrs_unit_count;
 
         return $this;
     }
